@@ -4,33 +4,37 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import button from "../../assets/img/entry-button.svg";
 
-function SignInScreen() {
+function SignUpScreen() {
     return (
         <Screen>
             <Logo src={logo}></Logo>
             <Margin>
-                <Title>
-                    Seja <br />
-                    Bem-vinde
-                </Title>
+                <Title>Cadastre-se</Title>
                 <Form>
+                    <Input name="name" type="text" placeholder="Nome" />
                     <Input name="email" type="text" placeholder="Email" />
+                    <Input name="phone" type="number" placeholder="Telefone" />
                     <Input
                         name="password"
                         type="password"
                         placeholder="Senha"
                     />
+                    <Input
+                        name="passwordConfirm"
+                        type="password"
+                        placeholder="Confimar senha"
+                    />
                     <Button>
                         <>
-                            <h1>Entrar</h1>
+                            <h1>Cadastrar</h1>
                             <img src={button} alt="button" />
                         </>
                     </Button>
                 </Form>
-                <Link to="/sign-up">
-                    <SignUp>
-                        Ainda não tem uma conta? <strong>Cadastre-se!</strong>
-                    </SignUp>
+                <Link to="/">
+                    <SignIn>
+                        Já possui uma conta? <strong>Conecte-se!</strong>
+                    </SignIn>
                 </Link>
             </Margin>
         </Screen>
@@ -65,25 +69,26 @@ const Logo = styled.img`
 
 const Title = styled.h1`
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
 
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 700;
     line-height: 40px;
 `;
 
 const Form = styled.form`
     width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+
     display: flex;
     flex-direction: column;
+
+    z-index: 1;
 `;
 
 const Input = styled.input`
     width: 100%;
     height: 58px;
-
-    margin-bottom: 25px;
 
     font-size: 20px;
     color: #591708;
@@ -103,7 +108,7 @@ const Input = styled.input`
 
 const Button = styled.button`
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
 
     display: flex;
     align-items: center;
@@ -121,7 +126,7 @@ const Button = styled.button`
     }
 `;
 
-const SignUp = styled.p`
+const SignIn = styled.p`
     width: 100%;
     margin-bottom: 15px;
 
@@ -138,4 +143,4 @@ const SignUp = styled.p`
     }
 `;
 
-export default SignInScreen;
+export default SignUpScreen;
