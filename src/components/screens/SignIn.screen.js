@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/img/logo.svg";
-import button from "../../assets/img/entry-button.svg";
+import button from "../../assets/img/button.svg";
 
 function SignInScreen() {
     return (
@@ -103,7 +103,7 @@ const Input = styled.input`
 
 const Button = styled.button`
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
 
     display: flex;
     align-items: center;
@@ -116,9 +116,28 @@ const Button = styled.button`
     border: none;
     background-color: transparent;
 
-    h1 {
-        font-size: 30px;
+    font-size: 30px;
+`;
+
+const Click = styled.div`
+    position: relative;
+
+    ion-icon {
+        font-size: 40px;
+        color: #f9e9d2;
+
+        position: absolute;
+        left: 55px;
+        top: 25px;
     }
+`;
+
+const Loader = styled.div`
+    font-size: 40px;
+
+    position: absolute;
+    left: 45px;
+    top: 18px;
 `;
 
 const SignUp = styled.p`

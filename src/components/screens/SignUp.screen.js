@@ -1,34 +1,137 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import SyncLoader from "react-spinners/SyncLoader";
 
 import logo from "../../assets/img/logo.svg";
-import button from "../../assets/img/entry-button.svg";
+import button from "../../assets/img/button.svg";
 
 function SignUpScreen() {
+    const navigate = useNavigate();
+
+    const [newUser, setNewUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        passwordConfirm: "",
+    });
+
+    const [disabled, setDisabled] = useState(false);
+
+    function clearInputs() {
+        setNewUser({
+            name: "",
+            email: "",
+            phone: "",
+            password: "",
+            passwordConfirm: "",
+        });
+    }
+
+    function submitForm(e) {
+        e.preventDefault();
+
+        setDisabled(true);
+
+        axios
+            .post("https://sweetkalu-back.onrender.com/sign-up", newUser)
+            .then((ans) => {
+                alert("Cadastro concluído! Agora faça o login.");
+                navigate("/");
+            })
+            .catch((err) => {
+                alert("Fala no cadastro! Tente novamente");
+                clearInputs();
+                setDisabled(false);
+            });
+    }
+
     return (
         <Screen>
             <Logo src={logo}></Logo>
             <Margin>
                 <Title>Cadastre-se</Title>
-                <Form>
-                    <Input name="name" type="text" placeholder="Nome" />
-                    <Input name="email" type="text" placeholder="Email" />
-                    <Input name="phone" type="number" placeholder="Telefone" />
+                <Form onSubmit={submitForm}>
+                    <Input
+                        name="name"
+                        type="text"
+                        placeholder="Nome"
+                        value={newUser.name}
+                        onChange={(e) =>
+                            setNewUser({ ...newUser, name: e.target.value })
+                        }
+                        disabled={disabled}
+                        required
+                    />
+                    <Input
+                        name="email"
+                        type="text"
+                        placeholder="Email"
+                        value={newUser.email}
+                        onChange={(e) =>
+                            setNewUser({ ...newUser, email: e.target.value })
+                        }
+                        disabled={disabled}
+                        required
+                    />
+                    <Input
+                        name="phone"
+                        type="number"
+                        placeholder="Telefone"
+                        value={newUser.phone}
+                        onChange={(e) =>
+                            setNewUser({ ...newUser, phone: e.target.value })
+                        }
+                        disabled={disabled}
+                        required
+                    />
                     <Input
                         name="password"
                         type="password"
                         placeholder="Senha"
+                        value={newUser.password}
+                        onChange={(e) =>
+                            setNewUser({ ...newUser, password: e.target.value })
+                        }
+                        disabled={disabled}
+                        required
                     />
                     <Input
                         name="passwordConfirm"
                         type="password"
                         placeholder="Confimar senha"
+                        value={newUser.passwordConfirm}
+                        onChange={(e) =>
+                            setNewUser({
+                                ...newUser,
+                                passwordConfirm: e.target.value,
+                            })
+                        }
+                        disabled={disabled}
+                        required
                     />
-                    <Button>
-                        <>
-                            <h1>Cadastrar</h1>
-                            <img src={button} alt="button" />
-                        </>
+                    <Button disabled={disabled}>
+                        {!disabled ? (
+                            <Static>
+                                Cadastrar
+                                <Click>
+                                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                                    <img src={button} alt="button" />
+                                </Click>
+                            </Static>
+                        ) : (
+                            <OnClick>
+                                Cadastrando
+                                <Click>
+                                    <Loader>
+                                        <SyncLoader color="#F9E9D2" />
+                                    </Loader>
+                                    <img src={button} alt="button" />
+                                </Click>
+                            </OnClick>
+                        )}
                     </Button>
                 </Form>
                 <Link to="/">
@@ -110,10 +213,6 @@ const Button = styled.button`
     width: 100%;
     margin-top: 15px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
     padding-right: 0;
     padding-left: 0;
 
@@ -121,9 +220,42 @@ const Button = styled.button`
     border: none;
     background-color: transparent;
 
-    h1 {
-        font-size: 30px;
+    font-size: 30px;
+`;
+
+const Static = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const OnClick = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Click = styled.div`
+    position: relative;
+
+    ion-icon {
+        font-size: 40px;
+        color: #f9e9d2;
+
+        position: absolute;
+        left: 55px;
+        top: 25px;
     }
+`;
+
+const Loader = styled.div`
+    font-size: 40px;
+
+    position: absolute;
+    left: 45px;
+    top: 18px;
 `;
 
 const SignIn = styled.p`
