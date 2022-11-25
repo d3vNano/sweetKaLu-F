@@ -4,29 +4,28 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader";
 
-import logo from "../../assets/img/logo.svg";
-import button from "../../assets/img/button.svg";
+import { logo, button } from "../../assets/img/export";
 
 function SignUpScreen() {
     const navigate = useNavigate();
 
     const [newUser, setNewUser] = useState({
-        name: "",
+        username: "",
         email: "",
-        phone: "",
+        phone: "".toString(),
         password: "",
-        passwordConfirm: "",
+        repeatPassword: "",
     });
 
     const [disabled, setDisabled] = useState(false);
 
     function clearInputs() {
         setNewUser({
-            name: "",
+            username: "",
             email: "",
             phone: "",
             password: "",
-            passwordConfirm: "",
+            repeatPassword: "",
         });
     }
 
@@ -58,9 +57,9 @@ function SignUpScreen() {
                         name="name"
                         type="text"
                         placeholder="Nome"
-                        value={newUser.name}
+                        value={newUser.username}
                         onChange={(e) =>
-                            setNewUser({ ...newUser, name: e.target.value })
+                            setNewUser({ ...newUser, username: e.target.value })
                         }
                         disabled={disabled}
                         required
@@ -102,11 +101,11 @@ function SignUpScreen() {
                         name="passwordConfirm"
                         type="password"
                         placeholder="Confimar senha"
-                        value={newUser.passwordConfirm}
+                        value={newUser.repeatPassword}
                         onChange={(e) =>
                             setNewUser({
                                 ...newUser,
-                                passwordConfirm: e.target.value,
+                                repeatPassword: e.target.value,
                             })
                         }
                         disabled={disabled}
