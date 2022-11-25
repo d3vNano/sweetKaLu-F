@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-import Header from "../content/Header.content";
-import Main from "../content/Main.content";
-import Footer from "../content/Footer.content";
+import MainHeader from "../content/MainHeader.content";
+import MainContent from "../content/MainContent.content";
+import MainFooter from "../content/MainFooter.content";
 
 function ProductsScreen() {
     return (
         <Screen>
-            <Header />
-            <Main />
-            <Footer />
+            <MainHeader />
+            <MainContent />
+            <MainFooter />
         </Screen>
     );
 }
