@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { back2, clean } from "../../assets/img/export";
 
-function CartHeader() {
+function CheckoutHeader() {
     return (
         <Screen>
             <Menu>
                 <IconSearch src={back2} />
-                <Title>CARRINHO</Title>
+                <Title>CHECKOUT</Title>
                 <IconMenu src={clean} />
             </Menu>
         </Screen>
@@ -51,4 +51,4 @@ const IconMenu = styled.img`
     width: 30px;
 `;
 
-export default CartHeader;
+export default CheckoutHeader;

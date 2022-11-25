@@ -35,7 +35,7 @@ function SignInScreen() {
                 window.localStorage.setItem("user", JSON.stringify(ans.data));
                 setLoggedUser(ans.data);
                 alert("Bem vindo" + ans.data.username);
-                navigate("/products");
+                navigate("/home");
             })
             .catch((err) => {
                 console.log(err);

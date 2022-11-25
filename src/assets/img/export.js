@@ -7,6 +7,7 @@ import search from "../img/search.svg";
 import home from "../img/home.svg";
 import list from "../img/list.svg";
 import back from "../img/back.svg";
+import back2 from "../img/back2.svg";
 import cart from "../img/cart.svg";
 import cart2 from "../img/cart2.svg";
 import cart3 from "../img/cart3.svg";
@@ -25,6 +26,7 @@ export {
     home,
     list,
     back,
+    back2,
     cart,
     cart2,
     cart3,
