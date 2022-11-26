@@ -1,18 +1,54 @@
 import axios from "axios";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
 
 import { cart3, star, star2 } from "../../assets/img/export";
 
 function ProductContent() {
+    const { id } = useParams();
+    const [
+        {
+            category,
+            description,
+            image,
+            name,
+            price,
+            shortDescription,
+            stock,
+            stockToReverse,
+            type,
+            _id,
+        },
+        setProduct,
+    ] = useState([]);
+
+    const [amount, setAmount] = useState(0);
+
+    const { loggedUser } = useContext(UserContext);
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + loggedUser.token,
+        },
+    };
+
+    useEffect(() => {
+        axios
+            .get(`https://sweetkalu-back.onrender.com/products/${id}`, config)
+            .then((ans) => {
+                setProduct(ans.data);
+            });
+    }, []);
+
     return (
         <Screen>
-            <Banner src="https://static01.nyt.com/images/2020/07/10/well/10well-newsletter/10well-newsletter-superJumbo.jpg" />
+            <Banner src={image} />
             <Content>
                 <IconCart src={cart3} />
-                <Title>TITULO DO PRODUTO</Title>
-                <Category>Categoria</Category>
+                <Title>{name}</Title>
+                <Category>{type + " - " + category}</Category>
                 <Div>
                     <Rank>
                         <IconStar src={star} />
@@ -21,24 +57,22 @@ function ProductContent() {
                         <IconStar src={star} />
                         <IconStar2 src={star2} />
                     </Rank>
-                    <Stock>Em estoque: 10</Stock>
+                    <Stock>
+                        Em estoque: {stock === "true" ? "cheio" : stock}
+                    </Stock>
                 </Div>
                 <Div>
                     <Price>
-                        <p>R$</p>10,00
+                        <p>R$</p>
+                        {price},00
                     </Price>
                     <AmountButton>
                         <Counter>-</Counter>
-                        <Amount>0</Amount>
+                        <Amount>{amount}</Amount>
                         <Counter>+</Counter>
                     </AmountButton>
                 </Div>
-                <Desc>
-                    Lorem Ipsum é simplesmente uma simulação de texto da
-                    indústria tipográfica e de impressos, e vem sendo utilizado
-                    desde o século XVI, quando um impressor desconhecido pegou
-                    uma bandeja de tipos e os embaralhou...
-                </Desc>
+                <Desc>{description}</Desc>
             </Content>
         </Screen>
     );

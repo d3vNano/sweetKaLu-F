@@ -8,8 +8,10 @@ function ProductHeader() {
         <Screen>
             <Menu>
                 <Button>
-                    <IconBack src={back} />
-                    <IconBubble src={bubble} />
+                    <Link to="/home">
+                        <IconBack src={back} />
+                        <IconBubble src={bubble} />
+                    </Link>
                 </Button>
                 <Button>
                     <IconMenu src={menu} />
@@ -27,6 +29,12 @@ const Screen = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 const Menu = styled.div`

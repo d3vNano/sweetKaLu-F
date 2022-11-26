@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function Products({
     category,
@@ -13,18 +14,20 @@ function Products({
 }) {
     return (
         <Screen>
-            <Product>
-                <Left>
-                    <Img src={image} />
-                </Left>
-                <Right>
-                    <Top>
-                        <Title>{name}</Title>
-                        <Price>R${price}</Price>
-                    </Top>
-                    <Desc>{shortDescription}</Desc>
-                </Right>
-            </Product>
+            <Link to={`/product/${id}`}>
+                <Product>
+                    <Left>
+                        <Img src={image} />
+                    </Left>
+                    <Right>
+                        <Top>
+                            <Title>{name}</Title>
+                            <Price>R${price}</Price>
+                        </Top>
+                        <Desc>{shortDescription}</Desc>
+                    </Right>
+                </Product>
+            </Link>
         </Screen>
     );
 }

@@ -7,9 +7,7 @@ import ProductList from "../functions/ProductList";
 
 function MainContent() {
     const { loggedUser } = useContext(UserContext);
-
     const [products, setProducts] = useState([]);
-
     const config = {
         headers: {
             Authorization: "Bearer " + loggedUser.token,

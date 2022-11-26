@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { search, menu } from "../../assets/img/export";
+import { search, menu, bubble } from "../../assets/img/export";
 
 function HeaderContent() {
     return (
         <Screen>
             <Menu>
-                <IconSearch src={search} />
-                <IconMenu src={menu} />
+                <Button>
+                    <IconBack src={search} />
+                    <IconBubble src={bubble} />
+                </Button>
+                <Button>
+                    <IconMenu src={menu} />
+                    <IconBubble src={bubble} />
+                </Button>
             </Menu>
         </Screen>
     );
@@ -33,20 +39,33 @@ const Menu = styled.div`
     align-items: center;
     justify-content: end;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
 
     z-index: 5;
 `;
 
-const IconSearch = styled.img`
+const Button = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+`;
+
+const IconBack = styled.img`
     width: 30px;
+
+    position: absolute;
 `;
 
 const IconMenu = styled.img`
     width: 30px;
-    margin-left: 20px;
+
+    position: absolute;
 `;
+
+const IconBubble = styled.img``;
 
 export default HeaderContent;

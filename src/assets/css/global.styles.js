@@ -23,6 +23,10 @@ const GlobalStyles = createGlobalStyle`
     h2 {
         font-family: 'Bebas Neue', cursive;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyles;
