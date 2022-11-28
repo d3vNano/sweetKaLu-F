@@ -210,6 +210,7 @@ const Amount = styled.h2`
 
 const Desc = styled.p`
     margin-top: 20px;
+    margin-bottom: 100px;
     font-size: 18px;
     line-height: 1.5rem;
 `;

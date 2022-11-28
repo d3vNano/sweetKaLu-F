@@ -98,6 +98,8 @@ const Title = styled.h2`
 const Desc = styled.p`
     font-size: 18px;
     color: #f9e9d2;
+
+    text-overflow: ellipsis;
 `;
 
 export default Products;
