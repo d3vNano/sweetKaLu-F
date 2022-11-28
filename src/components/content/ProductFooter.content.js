@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 
 import styled from "styled-components";
 import { cart } from "../../assets/img/export";
@@ -29,12 +30,16 @@ function ProductFooter({ amount, product }) {
             )
             .then((ans) => {
                 console.log(ans);
-                alert("Produto adicionado no carrinho!");
+                swal({
+                    title: "Parabéns",
+                    text: "Produto adicionado no carrinho!",
+                    button: false,
+                    timer: 2500,
+                });
                 navigate("/home");
             })
             .catch((err) => {
                 console.log(err);
-                alert("...");
             });
     }
 
@@ -72,6 +77,7 @@ const Button = styled.div`
     z-index: 1;
 
     background-color: #ea3232;
+    cursor: pointer;
 `;
 
 const IconCart = styled.img`

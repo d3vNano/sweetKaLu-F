@@ -365,6 +365,7 @@ const Button = styled.button`
 
     border: none;
     background-color: #ea3232;
+    cursor: pointer;
 `;
 
 export default CheckoutContent;
