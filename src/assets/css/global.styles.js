@@ -19,6 +19,19 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         color: #591708;
     }
+
+    h2 {
+        font-family: 'Bebas Neue', cursive;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .swal-overlay {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
 `;
 
 export default GlobalStyles;
