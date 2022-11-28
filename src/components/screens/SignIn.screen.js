@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import axios from "axios";
+import swal from "sweetalert";
+import styled from "styled-components";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -34,12 +35,18 @@ function SignInScreen() {
             .then((ans) => {
                 window.localStorage.setItem("user", JSON.stringify(ans.data));
                 setLoggedUser(ans.data);
-                alert("Bem vindo" + ans.data.username);
+
+                swal({
+                    title: "Olá " + ans.data.username,
+                    text: "Seja bem-vinde",
+                    icon: "success",
+                    button: false,
+                    timer: 2500,
+                });
                 navigate("/home");
             })
             .catch((err) => {
-                console.log(err);
-                alert("Email ou senha incorretos! Tente novamente.");
+                alert(err.response.data.message);
                 clearInputs();
                 setDisabled(false);
             });

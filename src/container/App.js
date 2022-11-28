@@ -18,7 +18,12 @@ function App() {
     );
 
     return (
-        <UserContext.Provider value={{ loggedUser, setLoggedUser }}>
+        <UserContext.Provider
+            value={{
+                loggedUser,
+                setLoggedUser,
+            }}
+        >
             <ResetStyles />
             <GlobalStyles />
             <BrowserRouter>

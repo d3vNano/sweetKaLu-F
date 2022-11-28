@@ -2,20 +2,20 @@ import styled from "styled-components";
 
 import { tresh } from "../../assets/img/export";
 
-function CartList() {
+function CartList({ name, image, price, shortDescription, stockToReserve }) {
     return (
         <Screen>
-            <Img src="https://st2.depositphotos.com/1662158/5747/i/600/depositphotos_57473755-stock-photo-chocolate-muffins-with-a-heap.jpg" />
+            <Img src={image} />
             <Right>
                 <Top>
-                    <Title>NOME DO PRODUTO EM DESTAQUE</Title>
-                    <Desc>Short description of product...</Desc>
+                    <Title>{name}</Title>
+                    <Desc>{shortDescription}</Desc>
                 </Top>
                 <Bottom>
-                    <Price>R$10,00</Price>
+                    <Price>R${price},00</Price>
                     <AmountBlock>
                         <IconTresh src={tresh} />
-                        <Amount>0</Amount>
+                        <Amount>{stockToReserve}</Amount>
                         <Counter>+</Counter>
                     </AmountBlock>
                 </Bottom>

@@ -1,46 +1,20 @@
-import axios from "axios";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../contexts/user.context";
 
 import { cart3, star, star2 } from "../../assets/img/export";
 
-function ProductContent() {
-    const { id } = useParams();
-    const [
-        {
-            category,
-            description,
-            image,
-            name,
-            price,
-            shortDescription,
-            stock,
-            stockToReverse,
-            type,
-            _id,
-        },
-        setProduct,
-    ] = useState([]);
-
-    const [amount, setAmount] = useState(0);
-
-    const { loggedUser } = useContext(UserContext);
-
-    const config = {
-        headers: {
-            Authorization: "Bearer " + loggedUser.token,
-        },
-    };
-
-    useEffect(() => {
-        axios
-            .get(`https://sweetkalu-back.onrender.com/products/${id}`, config)
-            .then((ans) => {
-                setProduct(ans.data);
-            });
-    }, []);
+function ProductContent({ product, amount, setAmount }) {
+    const {
+        category,
+        description,
+        image,
+        name,
+        price,
+        shortDescription,
+        stock,
+        stockToReserve,
+        type,
+        _id,
+    } = product;
 
     return (
         <Screen>
@@ -67,9 +41,25 @@ function ProductContent() {
                         {price},00
                     </Price>
                     <AmountButton>
-                        <Counter>-</Counter>
+                        <Counter
+                            onClick={() => {
+                                amount === 0
+                                    ? setAmount(amount - 0)
+                                    : setAmount(amount - 1);
+                            }}
+                        >
+                            -
+                        </Counter>
                         <Amount>{amount}</Amount>
-                        <Counter>+</Counter>
+                        <Counter
+                            onClick={() => {
+                                amount < stock || stock === "true"
+                                    ? setAmount(amount + 1)
+                                    : setAmount(amount + 0);
+                            }}
+                        >
+                            +
+                        </Counter>
                     </AmountButton>
                 </Div>
                 <Desc>{description}</Desc>

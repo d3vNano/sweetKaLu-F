@@ -1,24 +1,92 @@
+import axios from "axios";
+import swal from "sweetalert";
 import styled from "styled-components";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function CheckoutContent() {
+import SyncLoader from "react-spinners/SyncLoader";
+import UserContext from "../contexts/user.context";
+
+function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
+    const { loggedUser } = useContext(UserContext);
+    const navigate = useNavigate();
+    const [address, setAddress] = useState({
+        address: "",
+        number: "",
+        city: "",
+        postalCode: "",
+    });
+
+    const [disabled, setDisabled] = useState(false);
+
+    function clearInputs() {
+        setAddress({
+            address: "",
+            number: "",
+            city: "",
+            postalCode: "",
+        });
+    }
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + loggedUser.token,
+        },
+    };
+
+    function getConfirm() {
+        axios
+            .get(
+                `https://sweetkalu-back.onrender.com/confirm/${orderId}`,
+                config
+            )
+            .then((ans) => {
+                swal("Seu pedido foi realizado!");
+                navigate("/home");
+            });
+    }
+
+    function submitForm(e) {
+        e.preventDefault();
+
+        setDisabled(true);
+        console.log(address);
+        axios
+            .post(
+                `https://sweetkalu-back.onrender.com/checkout/${orderId}`,
+                { address },
+                config
+            )
+            .then((ans) => {
+                //enviar whats
+                //enviar email
+                //mostrar a confirmação do pedido
+                getConfirm();
+            })
+            .catch((err) => {
+                console.log(err.response.data.message);
+                clearInputs();
+                setDisabled(false);
+            });
+    }
     return (
         <Screen>
             <Title>RESUMO DE VALORES</Title>
             <Block>
                 <Top>
                     <SubTotal>Subtotal</SubTotal>
-                    <SubTotal>R$40,00</SubTotal>
+                    <SubTotal>R${subtotalPrice},00</SubTotal>
                 </Top>
                 <Mid>
                     <Delivery>Taxa de entrega</Delivery>
-                    <Delivery>R$10,00</Delivery>
+                    <Delivery>R${deliveryFee},00</Delivery>
                 </Mid>
                 <Bottom>
                     <Total>Total</Total>
-                    <Total>R$50,00</Total>
+                    <Total>R${totalPrice},00</Total>
                 </Bottom>
             </Block>
-            <Card>
+            {/*             <Card>
                 <CardTitle>SWEET CARD</CardTitle>
                 <CardForm>
                     <CardInput
@@ -40,32 +108,69 @@ function CheckoutContent() {
                         />
                     </Div>
                 </CardForm>
-            </Card>
+            </Card> */}
             <Adress>
-                <AdressForm>
+                <AdressForm onSubmit={submitForm}>
                     <AdressInput
-                        name="adress"
+                        name="address"
                         type="text"
                         placeholder="Endereço"
+                        value={address.address}
+                        onChange={(e) =>
+                            setAddress({ ...address, address: e.target.value })
+                        }
+                        disabled={disabled}
+                        required
                     />
                     <Div>
                         <AdressInput
-                            name="adressNumber"
+                            name="addressNumber"
                             type="text"
                             placeholder="Número"
+                            value={address.number}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    number: e.target.value,
+                                })
+                            }
+                            disabled={disabled}
+                            required
                         />
                         <Spacer />
                         <AdressInput
-                            name="adressCountry"
+                            name="addressCountry"
                             type="text"
                             placeholder="Cidade/ES"
+                            value={address.city}
+                            onChange={(e) =>
+                                setAddress({ ...address, city: e.target.value })
+                            }
+                            disabled={disabled}
+                            required
                         />
                     </Div>
                     <CepInput
-                        name="adressPostalCode"
+                        name="addressPostalCode"
                         type="text"
                         placeholder="CEP"
+                        value={address.postalCode}
+                        onChange={(e) =>
+                            setAddress({
+                                ...address,
+                                postalCode: e.target.value,
+                            })
+                        }
+                        disabled={disabled}
+                        required
                     />
+                    <Button>
+                        {disabled ? (
+                            <SyncLoader color="#331A05" />
+                        ) : (
+                            "FINALIZAR PEDIDO"
+                        )}
+                    </Button>
                 </AdressForm>
             </Adress>
         </Screen>
@@ -236,6 +341,30 @@ const CepInput = styled.input`
         font-weight: 400;
         color: #f29494;
     }
+`;
+
+const Button = styled.button`
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    z-index: 1;
+
+    font-family: "Bebas Neue", cursive;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 0.25rem;
+    color: #331a05;
+
+    border: none;
+    background-color: #ea3232;
 `;
 
 export default CheckoutContent;

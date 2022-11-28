@@ -41,7 +41,7 @@ function SignUpScreen() {
                 navigate("/");
             })
             .catch((err) => {
-                alert("Fala no cadastro! Tente novamente");
+                alert(err.response.data.message);
                 clearInputs();
                 setDisabled(false);
             });

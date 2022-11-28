@@ -1,11 +1,46 @@
-import styled from "styled-components";
+import axios from "axios";
 
+import styled from "styled-components";
 import { cart } from "../../assets/img/export";
 
-function ProductFooter() {
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../contexts/user.context";
+
+function ProductFooter({ amount, product }) {
+    const navigate = useNavigate();
+    const { loggedUser } = useContext(UserContext);
+    const config = {
+        headers: {
+            Authorization: "Bearer " + loggedUser.token,
+        },
+    };
+
+    function addToCart() {
+        const body = {
+            stockToReserve: Number(amount),
+        };
+
+        axios
+            .put(
+                `https://sweetkalu-back.onrender.com/cart/${product._id}`,
+                body,
+                config
+            )
+            .then((ans) => {
+                console.log(ans);
+                alert("Produto adicionado no carrinho!");
+                navigate("/home");
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("...");
+            });
+    }
+
     return (
         <Screen>
-            <Button>
+            <Button onClick={() => addToCart()}>
                 <IconCart src={cart} />
                 <Title>COMPRAR</Title>
             </Button>

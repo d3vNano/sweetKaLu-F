@@ -33,6 +33,8 @@ function Products({
 }
 
 const Screen = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,12 +43,15 @@ const Screen = styled.div`
 
 const Product = styled.div`
     width: 100%;
-    height: 100%;
+    height: 150px;
     margin-bottom: 15px;
     display: flex;
 `;
 
 const Left = styled.div`
+    width: 150px;
+    height: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,7 +61,7 @@ const Left = styled.div`
 
 const Img = styled.img`
     width: 150px;
-    height: 150px;
+    height: 100%;
 
     object-fit: cover;
 

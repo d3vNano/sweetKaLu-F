@@ -2,14 +2,19 @@ import styled from "styled-components";
 
 import CartList from "../blocks/CartList";
 
-function CartContent() {
+function CartContent({ products }) {
     return (
         <Screen>
-            <CartList />
-            <CartList />
-            <CartList />
-            <CartList />
-            <CartList />
+            {products.map((product, index) => (
+                <CartList
+                    key={index}
+                    name={product.name}
+                    image={product.image}
+                    price={product.price}
+                    shortDescription={product.shortDescription}
+                    stockToReserve={product.stockToReserve}
+                />
+            ))}
         </Screen>
     );
 }

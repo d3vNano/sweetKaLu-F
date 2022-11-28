@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 import { cart2 } from "../../assets/img/export";
 
-function CartCheck() {
+function CartCheck({ cart }) {
     return (
         <Screen>
             <Title>Ver carrinho</Title>
             <Check>
                 <CartAmount>
-                    <Amount>1</Amount>
+                    <Amount>{cart.totalItens}</Amount>
                     <IconCart src={cart2} />
                 </CartAmount>
-                <Total>R$100,00</Total>
+                <Total>R$ {cart.subtotalPrice},00</Total>
             </Check>
         </Screen>
     );

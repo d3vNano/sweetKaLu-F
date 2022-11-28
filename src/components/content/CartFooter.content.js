@@ -1,19 +1,22 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { cart } from "../../assets/img/export";
 
-function CartFooter() {
+function CartFooter({ subtotal }) {
     return (
         <Screen>
             <Button>
                 <Desc>
                     <Total>Total de pedidos</Total>
-                    <Price>R$50,00</Price>
+                    <Price>R${subtotal},00</Price>
                 </Desc>
-                <Checkout>
-                    <IconCart src={cart} />
-                    <Title>COMPRAR</Title>
-                </Checkout>
+                <Link to="/checkout">
+                    <Checkout>
+                        <IconCart src={cart} />
+                        <Title>COMPRAR</Title>
+                    </Checkout>
+                </Link>
             </Button>
         </Screen>
     );

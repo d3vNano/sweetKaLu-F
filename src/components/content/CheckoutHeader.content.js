@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import { back2, clean } from "../../assets/img/export";
 
 function CheckoutHeader() {
     return (
         <Screen>
             <Menu>
-                <IconSearch src={back2} />
+                <Link to="/cart">
+                    <IconSearch src={back2} />
+                </Link>
                 <Title>CHECKOUT</Title>
                 <IconMenu src={clean} />
             </Menu>

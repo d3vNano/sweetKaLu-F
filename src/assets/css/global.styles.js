@@ -27,6 +27,11 @@ const GlobalStyles = createGlobalStyle`
     a {
         text-decoration: none;
     }
+
+    .swal-overlay {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
 `;
 
 export default GlobalStyles;
