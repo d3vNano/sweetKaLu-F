@@ -37,6 +37,7 @@ const Screen = styled.div`
 `;
 
 const Img = styled.img`
+    width: 100px;
     height: 100%;
 
     object-fit: cover;

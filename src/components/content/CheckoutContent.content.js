@@ -41,7 +41,9 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                 config
             )
             .then((ans) => {
-                swal("Seu pedido foi realizado!");
+                console.log(ans.data);
+                const order = `Pedido nº:${ans.data.orderNo}\nPronto para entrega em:\n${ans.data.deliveryAddress.address}, ${ans.data.deliveryAddress.number} - ${ans.data.deliveryAddress.city} - ${ans.data.deliveryAddress.postalCode}\n\nObrigado pela compra ${ans.data.username};`;
+                swal(order);
                 navigate("/home");
             });
     }
