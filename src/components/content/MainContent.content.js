@@ -24,7 +24,7 @@ function MainContent() {
 
     return (
         <Screen>
-            <Banner src="https://static01.nyt.com/images/2020/07/10/well/10well-newsletter/10well-newsletter-superJumbo.jpg" />
+            {/*             <Banner src="https://static01.nyt.com/images/2020/07/10/well/10well-newsletter/10well-newsletter-superJumbo.jpg" /> */}
             <Content>
                 <ProductList products={products} />
             </Content>
@@ -60,8 +60,10 @@ const Banner = styled.img`
 const Content = styled.div`
     width: 100%;
     height: 100%;
-    margin-top: 200px;
-    margin-bottom: 50px;
+
+    margin-top: 250px;
+    margin-bottom: 85px;
+
     padding: 20px;
     z-index: 1;
 
