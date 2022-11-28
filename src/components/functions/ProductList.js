@@ -97,7 +97,10 @@ function ProductList({ products }) {
     );
 }
 
-const Screen = styled.div``;
+const Screen = styled.div`
+    width: 100%;
+    height: 100%;
+`;
 
 const Spacer = styled.div`
     height: 45px;
