@@ -97,11 +97,7 @@ function ProductList({ products }) {
     );
 }
 
-const Screen = styled.div`
-    height: 100%;
-
-    background-color: #f9e9d2;
-`;
+const Screen = styled.div``;
 
 const Spacer = styled.div`
     height: 45px;
