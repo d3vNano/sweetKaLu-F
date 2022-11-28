@@ -1,10 +1,31 @@
 import axios from "axios";
+import swal from "sweetalert";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../contexts/user.context";
+import { Link, useNavigate } from "react-router-dom";
 
 import { back2, clean } from "../../assets/img/export";
 
 function CartHeader() {
+    const { loggedUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + loggedUser.token,
+        },
+    };
+
+    function cleanCart() {
+        axios
+            .delete("https://sweetkalu-back.onrender.com/cart", config)
+            .then((ans) => {
+                swal("Carrinho limpo!");
+                setInterval(navigate("/home"), 3000);
+            });
+    }
+
     return (
         <Screen>
             <Menu>
@@ -12,7 +33,7 @@ function CartHeader() {
                     <IconSearch src={back2} />
                 </Link>
                 <Title>CARRINHO</Title>
-                <IconMenu src={clean} />
+                <IconClean onClick={() => cleanCart()} src={clean} />
             </Menu>
         </Screen>
     );
@@ -52,8 +73,10 @@ const Title = styled.h1`
     font-weight: 400;
 `;
 
-const IconMenu = styled.img`
+const IconClean = styled.img`
     width: 30px;
+
+    cursor: pointer;
 `;
 
 export default CartHeader;

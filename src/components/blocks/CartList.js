@@ -26,7 +26,7 @@ function CartList({ name, image, price, shortDescription, stockToReserve }) {
 
 const Screen = styled.div`
     width: 100%;
-    height: 75px;
+    height: 100px;
     margin-bottom: 10px;
 
     display: flex;
@@ -37,8 +37,8 @@ const Screen = styled.div`
 `;
 
 const Img = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100%;
 
     object-fit: cover;
     border-radius: 10px 0 0 10px;
@@ -54,17 +54,24 @@ const Right = styled.div`
     justify-content: space-between;
 `;
 
-const Top = styled.div``;
+const Top = styled.div`
+    width: 100%;
+`;
 
 const Title = styled.h2`
+    width: 100%;
     margin-bottom: 3px;
+
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.25ch;
+
+    text-overflow: ellipsis;
 `;
 
 const Desc = styled.p`
     font-size: 10px;
+    text-overflow: ellipsis;
 `;
 
 const Bottom = styled.div`
@@ -83,14 +90,14 @@ const Price = styled.h2`
 `;
 
 const AmountBlock = styled.div`
-    width: 100px;
+    width: 50px;
     height: 25px;
     margin-right: 5px;
     padding: 0 10px;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
     border-radius: 5px;
     background-color: #f4d9b1;
@@ -98,6 +105,7 @@ const AmountBlock = styled.div`
 `;
 
 const IconTresh = styled.img`
+    display: none;
     height: 15px;
 `;
 
@@ -108,6 +116,7 @@ const Amount = styled.h2`
 `;
 
 const Counter = styled.h1`
+    display: none;
     font-size: 25px;
     font-weight: 400;
 

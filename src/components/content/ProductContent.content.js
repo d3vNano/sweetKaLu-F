@@ -198,6 +198,8 @@ const Counter = styled.div`
 
     border-radius: 20px;
     background-color: #f9e9d2;
+
+    cursor: pointer;
 `;
 
 const Amount = styled.h2`
