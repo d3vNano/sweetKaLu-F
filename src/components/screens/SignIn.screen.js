@@ -46,7 +46,12 @@ function SignInScreen() {
                 navigate("/home");
             })
             .catch((err) => {
-                alert(err.response.data.message);
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
                 clearInputs();
                 setDisabled(false);
             });
