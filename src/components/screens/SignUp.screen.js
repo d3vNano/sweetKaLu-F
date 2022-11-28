@@ -37,7 +37,13 @@ function SignUpScreen() {
         axios
             .post("https://sweetkalu-back.onrender.com/sign-up", newUser)
             .then((ans) => {
-                alert("Cadastro concluído! Agora faça o login.");
+                swal({
+                    title: "Parabéns!",
+                    text: "Cadastro concluído! Agora faça o login.",
+                    icon: "success",
+                    button: false,
+                    timer: 2500,
+                });
                 navigate("/");
             })
             .catch((err) => {
