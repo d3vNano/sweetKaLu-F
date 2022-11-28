@@ -29,9 +29,12 @@ function ProductFooter({ amount, product }) {
                 config
             )
             .then((ans) => {
+                const message = amount
+                    ? "Produto adicionado no carrinho!"
+                    : "Produto não incluído no carrinho";
                 swal({
                     title: "Parabéns",
-                    text: "Produto adicionado no carrinho!",
+                    text: message,
                     button: false,
                     timer: 2500,
                 });
