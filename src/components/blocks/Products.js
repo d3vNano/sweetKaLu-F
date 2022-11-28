@@ -39,6 +39,10 @@ const Screen = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    a {
+        display: block;
+        width: 100%;
+    }
 `;
 
 const Product = styled.div`
