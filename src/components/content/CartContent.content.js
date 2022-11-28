@@ -21,10 +21,10 @@ function CartContent({ products }) {
 
 const Screen = styled.div`
     width: 100%;
-    height: 100%;
+    /* height: 100%;
     margin-top: 175px;
-    margin-bottom: 180px;
-    margin: 350px 15px 180px 15px;
+    margin-bottom: 180px; */
+    margin: 100px 15px 180px 15px;
     padding: 15px;
 
     display: flex;
