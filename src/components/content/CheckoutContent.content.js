@@ -41,7 +41,6 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                 config
             )
             .then((ans) => {
-                console.log(ans.data);
                 const order = `Pedido nº:${ans.data.orderNo}\nPronto para entrega em:\n${ans.data.deliveryAddress.address}, ${ans.data.deliveryAddress.number} - ${ans.data.deliveryAddress.city} - ${ans.data.deliveryAddress.postalCode}\n\nObrigado pela compra ${ans.data.username};`;
                 swal(order);
                 navigate("/home");
@@ -52,7 +51,6 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
         e.preventDefault();
 
         setDisabled(true);
-        console.log(address);
         axios
             .post(
                 `https://sweetkalu-back.onrender.com/checkout/${orderId}`,
@@ -66,7 +64,6 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                 getConfirm();
             })
             .catch((err) => {
-                console.log(err.response.data.message);
                 clearInputs();
                 setDisabled(false);
             });

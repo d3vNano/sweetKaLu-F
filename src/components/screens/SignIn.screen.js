@@ -235,14 +235,12 @@ const Loader = styled.div`
 
 const SignUp = styled.p`
     width: 100%;
+    margin-top: 25px;
     margin-bottom: 15px;
 
     color: #f29494;
 
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
 
     strong {
         font-style: italic;

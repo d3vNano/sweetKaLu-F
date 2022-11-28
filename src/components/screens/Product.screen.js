@@ -26,7 +26,6 @@ function ProductScreen() {
         axios
             .get(`https://sweetkalu-back.onrender.com/products/${id}`, config)
             .then((ans) => {
-                console.log(ans);
                 setProduct(ans.data);
                 setAmount(ans.data.stockToReserve);
             });

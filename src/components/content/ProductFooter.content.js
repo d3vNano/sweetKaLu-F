@@ -29,7 +29,6 @@ function ProductFooter({ amount, product }) {
                 config
             )
             .then((ans) => {
-                console.log(ans);
                 swal({
                     title: "Parabéns",
                     text: "Produto adicionado no carrinho!",
@@ -38,9 +37,7 @@ function ProductFooter({ amount, product }) {
                 });
                 navigate("/home");
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch((err) => {});
     }
 
     return (

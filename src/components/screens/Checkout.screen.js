@@ -21,7 +21,6 @@ function CheckoutScreen() {
             .get("https://sweetkalu-back.onrender.com/checkout", config)
             .then((ans) => {
                 setOrder(ans.data);
-                console.log(ans.data);
             });
     }, []);
 
