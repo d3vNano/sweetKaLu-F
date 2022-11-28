@@ -40,7 +40,7 @@ function HomeScreen() {
             ) : (
                 <></>
             )}
-            <MainContent />
+            <MainContent isOpenCart={isOpenCart} />
             <MainFooter />
         </Screen>
     );
