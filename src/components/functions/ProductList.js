@@ -97,7 +97,9 @@ function ProductList({ products }) {
     );
 }
 
-const Screen = styled.div``;
+const Screen = styled.div`
+    height: 100vh;
+`;
 
 const Spacer = styled.div`
     height: 45px;
