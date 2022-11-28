@@ -44,6 +44,7 @@ const Screen = styled.div`
 const Product = styled.div`
     width: 100%;
     height: 150px;
+
     margin-bottom: 15px;
     display: flex;
 `;
@@ -69,6 +70,8 @@ const Img = styled.img`
 `;
 
 const Right = styled.div`
+    width: 100%;
+    height: 100%;
     padding: 10px;
 
     position: relative;
@@ -96,6 +99,8 @@ const Title = styled.h2`
 `;
 
 const Desc = styled.p`
+    width: 100%;
+    height: 100%;
     font-size: 18px;
     color: #f9e9d2;
 
