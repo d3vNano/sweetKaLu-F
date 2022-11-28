@@ -59,7 +59,7 @@ const Banner = styled.img`
 
 const Content = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin-top: 200px;
     margin-bottom: 40px;
     padding: 20px;
