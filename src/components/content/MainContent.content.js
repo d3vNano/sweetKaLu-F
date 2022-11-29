@@ -5,10 +5,12 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
 
 import ProductList from "../functions/ProductList";
+import { useNavigate } from "react-router-dom";
 
 function MainContent({ isOpenCart }) {
     const { loggedUser } = useContext(UserContext);
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
     const config = {
         headers: {
             Authorization: "Bearer " + loggedUser.token,
@@ -28,6 +30,7 @@ function MainContent({ isOpenCart }) {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }, []);
 

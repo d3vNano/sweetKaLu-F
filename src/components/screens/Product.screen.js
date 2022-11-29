@@ -1,7 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
 import swal from "sweetalert";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
 
@@ -16,6 +16,8 @@ function ProductScreen() {
 
     const [product, setProduct] = useState({});
     const [amount, setAmount] = useState();
+
+    const navigate = useNavigate();
 
     const config = {
         headers: {
@@ -37,6 +39,7 @@ function ProductScreen() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }, []);
 

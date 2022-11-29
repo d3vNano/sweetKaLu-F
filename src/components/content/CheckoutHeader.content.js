@@ -30,6 +30,7 @@ function CheckoutHeader() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }
 

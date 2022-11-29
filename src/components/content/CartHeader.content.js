@@ -31,6 +31,7 @@ function CartHeader() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home")
             });
     }
 

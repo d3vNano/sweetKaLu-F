@@ -1,6 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
 
@@ -10,6 +11,7 @@ import CheckoutContent from "../content/CheckoutContent.content";
 function CheckoutScreen() {
     const { loggedUser } = useContext(UserContext);
     const [order, setOrder] = useState();
+    const navigate = useNavigate();
 
     const config = {
         headers: {
@@ -30,6 +32,7 @@ function CheckoutScreen() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }, []);
 

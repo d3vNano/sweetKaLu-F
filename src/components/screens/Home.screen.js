@@ -2,7 +2,7 @@ import axios from "axios";
 import styled from "styled-components";
 import swal from "sweetalert";
 import { useEffect, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/user.context";
 
 import MainHeader from "../content/MainHeader.content";
@@ -15,6 +15,8 @@ function HomeScreen() {
 
     const [isOpenCart, setIsOpenCart] = useState(false);
     const [cart, setCart] = useState({});
+
+    const navigate = useNavigate();
 
     const config = {
         headers: {
@@ -36,6 +38,7 @@ function HomeScreen() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }, []);
 

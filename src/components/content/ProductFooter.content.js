@@ -47,6 +47,7 @@ function ProductFooter({ amount, product }) {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home")
             });
     }
 

@@ -55,6 +55,7 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home")
             });
     }
 

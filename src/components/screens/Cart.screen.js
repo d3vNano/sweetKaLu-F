@@ -9,10 +9,12 @@ import { back2, clean } from "../../assets/img/export";
 import CartHeader from "../content/CartHeader.content";
 import CartContent from "../content/CartContent.content";
 import CartFooter from "../content/CartFooter.content";
+import { useNavigate } from "react-router-dom";
 
 function CartScreen() {
     const { loggedUser } = useContext(UserContext);
     const [cart, setCart] = useState();
+    const navigate = useNavigate();
 
     const config = {
         headers: {
@@ -33,6 +35,7 @@ function CartScreen() {
                     icon: "error",
                     button: true,
                 });
+                navigate("/home");
             });
     }, []);
 
