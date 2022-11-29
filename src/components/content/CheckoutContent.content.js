@@ -1,6 +1,6 @@
 import axios from "axios";
-import swal from "sweetalert";
 import styled from "styled-components";
+import swal from "sweetalert";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -47,6 +47,14 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                 \n\nObrigado pela compra ${ans.data.username}`;
                 swal(order);
                 navigate("/home");
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }
 

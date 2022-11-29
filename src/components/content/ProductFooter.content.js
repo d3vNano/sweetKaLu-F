@@ -40,7 +40,14 @@ function ProductFooter({ amount, product }) {
                 });
                 navigate("/home");
             })
-            .catch((err) => {});
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
+            });
     }
 
     return (

@@ -1,5 +1,6 @@
 import axios from "axios";
 import styled from "styled-components";
+import swal from "sweetalert";
 import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../contexts/user.context";
@@ -27,6 +28,14 @@ function HomeScreen() {
             .then((ans) => {
                 setIsOpenCart(ans.data.products.length > 0);
                 setCart(ans.data);
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }, []);
 

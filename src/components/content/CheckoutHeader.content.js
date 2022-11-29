@@ -1,6 +1,6 @@
 import axios from "axios";
-import swal from "sweetalert";
 import styled from "styled-components";
+import swal from "sweetalert";
 import { useContext } from "react";
 import UserContext from "../contexts/user.context";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +22,14 @@ function CheckoutHeader() {
             .then((ans) => {
                 swal("Pedido cancelado!");
                 setInterval(navigate("/home"), 3000);
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }
 

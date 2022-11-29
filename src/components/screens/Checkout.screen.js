@@ -1,5 +1,6 @@
 import axios from "axios";
 import styled from "styled-components";
+import swal from "sweetalert";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
 
@@ -21,6 +22,14 @@ function CheckoutScreen() {
             .get("https://sweetkalu-back.onrender.com/checkout", config)
             .then((ans) => {
                 setOrder(ans.data);
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }, []);
 

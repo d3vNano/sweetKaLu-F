@@ -1,5 +1,6 @@
 import axios from "axios";
 import styled from "styled-components";
+import swal from "sweetalert";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user.context";
@@ -28,6 +29,14 @@ function ProductScreen() {
             .then((ans) => {
                 setProduct(ans.data);
                 setAmount(ans.data.stockToReserve);
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }, []);
 

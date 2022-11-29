@@ -23,6 +23,14 @@ function CartHeader() {
             .then((ans) => {
                 swal("Carrinho limpo!");
                 setInterval(navigate("/home"), 3000);
+            })
+            .catch((err) => {
+                swal({
+                    title: "Vish!",
+                    text: err.response.data.message,
+                    icon: "error",
+                    button: true,
+                });
             });
     }
 
