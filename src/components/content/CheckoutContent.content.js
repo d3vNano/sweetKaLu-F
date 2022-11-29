@@ -41,7 +41,10 @@ function CheckoutContent({ orderId, deliveryFee, subtotalPrice, totalPrice }) {
                 config
             )
             .then((ans) => {
-                const order = `Pedido nº:${ans.data.orderNo}\nPronto para entrega em:\n${ans.data.deliveryAddress.address}, ${ans.data.deliveryAddress.number} - ${ans.data.deliveryAddress.city} - ${ans.data.deliveryAddress.postalCode}\n\nObrigado pela compra ${ans.data.username};`;
+                const order = `Pedido nº:${ans.data.orderNo}\n
+                Pronto para entrega em:
+                ${ans.data.deliveryAddress.address}, ${ans.data.deliveryAddress.number} - ${ans.data.deliveryAddress.city} - ${ans.data.deliveryAddress.postalCode}
+                \n\nObrigado pela compra ${ans.data.username}`;
                 swal(order);
                 navigate("/home");
             });
