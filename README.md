@@ -33,7 +33,7 @@ Use o comando **_CTRL+SHIFT+M_** ou vá no canto superior direito da aba e selec
 
 <h4 align="center">
 
-    :heavy_check_mark: Sweet KaLu-Frontend :heavy_check_mark:
+    ✔️ Sweet KaLu-Frontend ✔️
 
 </h4>
 
@@ -97,16 +97,16 @@ Em caso de sucesso, está mensagem aparecerá:
 
 🛠 As seguintes ferramentas foram usadas na construção do projeto:
 
--   [ReactJs](https://www.prisma.io/)
--   [Styled-components](https://nodejs.org/en/)
--   [Axios](http://expressjs.com/)
--   [Sweet Alert](https://www.typescriptlang.org/)
+-   [ReactJs](https://react.dev)
+-   [Styled-components](https://styled-components.com)
+-   [Axios](https://axios-http.com/ptbr/)
+-   [Sweet Alert](https://www.npmjs.com/package/sweetalert)
 
 ---
 
 ## Autor
 
-<a href="https://github.com/daniel-bernardino747">
+<a href="https://github.com/d3vNano">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/102393674?v=4" width="100px;" alt=""/>
  <br />
  <b>Luiz Dorigo - d3vNano</b>
@@ -120,7 +120,7 @@ Entre em contato!
 
 ## Co-Autor
 
-<a href="https://github.com/daniel-bernardino747">
+<a href="https://github.com/victor-azevedo">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/100978477?v=4" width="100px;" alt=""/>
  <br />
  <b>Victor Azevedo</b>
