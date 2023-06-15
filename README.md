@@ -107,7 +107,7 @@ Em caso de sucesso, está mensagem aparecerá:
 ## Autor
 
 <a href="https://github.com/d3vNano">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/102393674?v=4" width="100px;" alt=""/>
+ <img style="border-radius: 100%" src="https://avatars.githubusercontent.com/u/102393674?v=4" width="100px;" alt="d3vNano-img"/>
  <br />
  <b>Luiz Dorigo - d3vNano</b>
 </a>
@@ -121,7 +121,7 @@ Entre em contato!
 ## Co-Autor
 
 <a href="https://github.com/victor-azevedo">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/100978477?v=4" width="100px;" alt=""/>
+ <img style="border-radius: 100%" src="https://avatars.githubusercontent.com/u/100978477?v=4" width="100px;" alt="victor-img"/>
  <br />
  <b>Victor Azevedo</b>
 </a>
