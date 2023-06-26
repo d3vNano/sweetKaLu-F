@@ -6,8 +6,6 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        width: 100vw;
-
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -6,8 +6,8 @@ const ResetStyles = createGlobalStyle`
    License: none (public domain)
 */
 html, body, #root {
-	width: 100%;
-    min-height: 100vh;
+	width: 100vw;
+  min-height: 100vh;
 	margin: 0;
 	padding: 0;
 }
