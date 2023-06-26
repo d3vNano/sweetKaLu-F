@@ -1,251 +1,236 @@
 import axios from "axios";
-import swal from "sweetalert";
-import styled from "styled-components";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SyncLoader from "react-spinners/SyncLoader";
+import styled from "styled-components";
+import swal from "sweetalert";
 import UserContext from "../contexts/user.context";
 
-import { logo, button } from "../../assets/img/export";
+import { button, logo } from "../../assets/img/export";
+import ScreenContainer from "../../container/ScreenContainer";
 
 function SignInScreen() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { setLoggedUser } = useContext(UserContext);
-    const [user, setUser] = useState({
-        email: "",
-        password: "",
+  const { setLoggedUser } = useContext(UserContext);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const [disabled, setDisabled] = useState(false);
+
+  function clearInputs() {
+    setUser({
+      email: "",
+      password: "",
     });
-    const [disabled, setDisabled] = useState(false);
+  }
 
-    function clearInputs() {
-        setUser({
-            email: "",
-            password: "",
+  function submitForm(e) {
+    e.preventDefault();
+
+    setDisabled(true);
+
+    axios
+      .post("https://sweetkalu-back.onrender.com/sign-in", user)
+      .then((ans) => {
+        window.localStorage.setItem("user", JSON.stringify(ans.data));
+        setLoggedUser(ans.data);
+
+        swal({
+          title: "Olá " + ans.data.username,
+          text: "Seja bem-vinde",
+          icon: "success",
+          button: false,
+          timer: 2500,
         });
-    }
+        navigate("/home");
+      })
+      .catch((err) => {
+        swal({
+          title: "Vish!",
+          text: err.response.data.message,
+          icon: "error",
+          button: true,
+        });
+        clearInputs();
+        setDisabled(false);
+      });
+  }
 
-    function submitForm(e) {
-        e.preventDefault();
-
-        setDisabled(true);
-
-        axios
-            .post("https://sweetkalu-back.onrender.com/sign-in", user)
-            .then((ans) => {
-                window.localStorage.setItem("user", JSON.stringify(ans.data));
-                setLoggedUser(ans.data);
-
-                swal({
-                    title: "Olá " + ans.data.username,
-                    text: "Seja bem-vinde",
-                    icon: "success",
-                    button: false,
-                    timer: 2500,
-                });
-                navigate("/home");
-            })
-            .catch((err) => {
-                swal({
-                    title: "Vish!",
-                    text: err.response.data.message,
-                    icon: "error",
-                    button: true,
-                });
-                clearInputs();
-                setDisabled(false);
-            });
-    }
-
-    return (
-        <Screen>
-            <Logo src={logo}></Logo>
-            <Margin>
-                <Title>
-                    Seja <br />
-                    Bem-vinde
-                </Title>
-                <Form onSubmit={submitForm}>
-                    <Input
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        value={user.email}
-                        onChange={(e) =>
-                            setUser({ ...user, email: e.target.value })
-                        }
-                        disabled={disabled}
-                        required
-                    />
-                    <Input
-                        name="password"
-                        type="password"
-                        placeholder="Senha"
-                        value={user.password}
-                        onChange={(e) =>
-                            setUser({ ...user, password: e.target.value })
-                        }
-                        disabled={disabled}
-                        required
-                    />
-                    <Button disabled={disabled}>
-                        {!disabled ? (
-                            <Static>
-                                Entrar
-                                <Click>
-                                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                                    <img src={button} alt="button" />
-                                </Click>
-                            </Static>
-                        ) : (
-                            <OnClick>
-                                Entrando
-                                <Click>
-                                    <Loader>
-                                        <SyncLoader color="#F9E9D2" />
-                                    </Loader>
-                                    <img src={button} alt="button" />
-                                </Click>
-                            </OnClick>
-                        )}
-                    </Button>
-                </Form>
-                <Link to="/sign-up">
-                    <SignUp>
-                        Ainda não tem uma conta? <strong>Cadastre-se!</strong>
-                    </SignUp>
-                </Link>
-            </Margin>
-        </Screen>
-    );
+  return (
+    <ScreenContainer>
+      <Logo src={logo}></Logo>
+      <Margin>
+        <Title>
+          Seja <br />
+          Bem-vinde
+        </Title>
+        <Form onSubmit={submitForm}>
+          <Input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            disabled={disabled}
+            required
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Senha"
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            disabled={disabled}
+            required
+          />
+          <Button disabled={disabled}>
+            {!disabled ? (
+              <Static>
+                Entrar
+                <Click>
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                  <img src={button} alt="button" />
+                </Click>
+              </Static>
+            ) : (
+              <OnClick>
+                Entrando
+                <Click>
+                  <Loader>
+                    <SyncLoader color="#F9E9D2" />
+                  </Loader>
+                  <img src={button} alt="button" />
+                </Click>
+              </OnClick>
+            )}
+          </Button>
+        </Form>
+        <Link to="/sign-up">
+          <SignUp>
+            Ainda não tem uma conta? <strong>Cadastre-se!</strong>
+          </SignUp>
+        </Link>
+      </Margin>
+    </ScreenContainer>
+  );
 }
 
-const Screen = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-`;
-
 const Margin = styled.div`
-    width: 100%;
-    padding-left: 50px;
+  width: 100%;
+  padding-left: 50px;
 `;
 
 const Logo = styled.img`
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-    font-size: 35px;
-    font-weight: 700;
-    line-height: 40px;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 40px;
 `;
 
 const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Input = styled.input`
-    width: 100%;
-    height: 58px;
+  width: 100%;
+  height: 58px;
 
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 
-    font-size: 20px;
-    color: #591708;
+  font-size: 20px;
+  color: #591708;
 
-    outline: none;
-    background-color: transparent;
+  outline: none;
+  background-color: transparent;
 
-    border: none;
-    border-bottom: 2px solid #f29494;
+  border: none;
+  border-bottom: 2px solid #f29494;
 
-    ::placeholder {
-        font-size: 15px;
-        font-weight: 400;
-        color: #f29494;
-    }
+  ::placeholder {
+    font-size: 15px;
+    font-weight: 400;
+    color: #f29494;
+  }
 `;
 
 const Button = styled.button`
-    width: 100%;
-    margin-top: 15px;
+  width: 100%;
+  margin-top: 15px;
 
-    padding-right: 0;
-    padding-left: 0;
+  padding-right: 0;
+  padding-left: 0;
 
-    color: inherit;
-    border: none;
-    background-color: transparent;
+  color: inherit;
+  border: none;
+  background-color: transparent;
 
-    font-size: 30px;
+  font-size: 30px;
 `;
 
 const Static = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const OnClick = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Click = styled.div`
-    position: relative;
+  position: relative;
 
-    ion-icon {
-        font-size: 40px;
-        color: #f9e9d2;
+  ion-icon {
+    font-size: 40px;
+    color: #f9e9d2;
 
-        position: absolute;
-        left: 55px;
-        top: 25px;
-    }
+    position: absolute;
+    left: 55px;
+    top: 25px;
+  }
 `;
 
 const Loader = styled.div`
-    font-size: 40px;
+  font-size: 40px;
 
-    position: absolute;
-    left: 45px;
-    top: 18px;
+  position: absolute;
+  left: 45px;
+  top: 18px;
 `;
 
 const SignUp = styled.p`
-    width: 100%;
-    margin-top: 25px;
-    margin-bottom: 15px;
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 50px;
 
-    color: #f29494;
+  color: #f29494;
 
-    text-align: center;
+  text-align: center;
 
-    strong {
-        font-style: italic;
-        text-decoration: underline;
-    }
+  strong {
+    font-style: italic;
+    text-decoration: underline;
+  }
 `;
 
 export default SignInScreen;
